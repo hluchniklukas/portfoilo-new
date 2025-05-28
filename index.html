@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>180° - Pomáháme firmám vyniknout na sociálních sítích</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&family=Alumni+Sans:wght@900&family=Dynalight&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        .modal-content {
+            background: #fff;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .modal-content h3 {
+            margin-bottom: 15px;
+        }
+
+        .modal-content input {
+            padding: 8px;
+            margin-bottom: 10px;
+            width: 200px;
+        }
+
+        .modal-content button {
+            padding: 8px 20px;
+            background: #5000FF;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .modal-content button:hover {
+            background: #4000CC;
+        }
+
+        .admin-btn {
+            background: none;
+            border: none;
+            color: #666;
+            cursor: pointer;
+            padding: 5px;
+            font-size: 12px;
+        }
+
+        .admin-btn:hover {
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+    <div id="spacing-controls" style="display: none;">
+        <div class="control-header">
+            <h3>Správa mezer a velikostí</h3>
+            <button id="logoutAdmin" class="logout-btn">Odhlásit</button>
+        </div>
+
+        <div class="control-section">
+            <h4>Mezery mezi sekcemi</h4>
+            <div class="control-group">
+                <label>Základní mezera mezi sekcemi:</label>
+                <input type="range" min="-50" max="50" value="0" data-target=":root" data-property="--section-spacing" data-unit="px">
+                <span class="value">0px</span>
+            </div>
+            <div class="control-group">
+                <label>Mezera nad sekcí s logy:</label>
+                <input type="range" min="-50" max="50" value="0" data-target=":root" data-property="--clients-section-margin" data-unit="px">
+                <span class="value">0px</span>
+            </div>
+            <div class="control-group">
+                <label>Mezera kolem ONEEIGHTY:</label>
+                <input type="range" min="-100" max="50" value="-40" data-target=":root" data-property="--section-divider-margin" data-unit="px">
+                <span class="value">-40px</span>
+            </div>
+            <div class="control-group">
+                <label>Mezera kolem obsahového marketingu:</label>
+                <input type="range" min="-150" max="50" value="-100" data-target=":root" data-property="--content-marketing-margin" data-unit="px">
+                <span class="value">-100px</span>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h4>Navigace a Hero</h4>
+            <div class="control-group">
+                <label>Navbar padding (top/bottom):</label>
+                <input type="range" min="0" max="100" value="32" data-target=".navbar" data-property="padding" data-unit="px">
+                <span class="value">32px</span>
+            </div>
+            <div class="control-group">
+                <label>Hero section padding (top):</label>
+                <input type="range" min="0" max="200" value="128" data-target=".hero" data-property="padding-top" data-unit="px">
+                <span class="value">128px</span>
+            </div>
+            <div class="control-group">
+                <label>Hero section padding (bottom):</label>
+                <input type="range" min="0" max="200" value="128" data-target=".hero" data-property="padding-bottom" data-unit="px">
+                <span class="value">128px</span>
+            </div>
+            <div class="control-group">
+                <label>Hero heading margin-bottom:</label>
+                <input type="range" min="0" max="100" value="24" data-target=".hero h1" data-property="margin-bottom" data-unit="px">
+                <span class="value">24px</span>
+            </div>
+            <div class="control-group">
+                <label>Hero subtitle margin-bottom:</label>
+                <input type="range" min="0" max="100" value="32" data-target=".hero .subtitle" data-property="margin-bottom" data-unit="px">
+                <span class="value">32px</span>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h4>Obsahový marketing</h4>
+            <div class="control-group">
+                <label>Padding sekce (top/bottom):</label>
+                <input type="range" min="40" max="160" value="80" data-target=".content-marketing" data-property="padding" data-unit="px">
+                <span class="value">80px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Velikost nadpisu:</label>
+                <input type="range" min="32" max="72" value="48" data-target=".section-heading" data-property="font-size" data-unit="px">
+                <span class="value">48px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Mezera pod nadpisem:</label>
+                <input type="range" min="20" max="100" value="60" data-target=".section-heading" data-property="margin-bottom" data-unit="px">
+                <span class="value">60px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Padding karty:</label>
+                <input type="range" min="20" max="100" value="60" data-target=".content-card" data-property="padding" data-unit="px">
+                <span class="value">60px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Zaoblení rohů karty:</label>
+                <input type="range" min="0" max="80" value="40" data-target=".content-card" data-property="border-radius" data-unit="px">
+                <span class="value">40px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Velikost hlavního textu:</label>
+                <input type="range" min="16" max="32" value="20" data-target=".content-card p" data-property="font-size" data-unit="px">
+                <span class="value">20px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Velikost pozdravu a otázky:</label>
+                <input type="range" min="24" max="48" value="32" data-target=".content-card .greeting, .content-card .question" data-property="font-size" data-unit="px">
+                <span class="value">32px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Mezery mezi odstavci:</label>
+                <input type="range" min="12" max="48" value="24" data-target=".content-card p" data-property="margin-bottom" data-unit="px">
+                <span class="value">24px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Velikost tlačítka:</label>
+                <input type="range" min="16" max="32" value="20" data-target=".content-btn" data-property="font-size" data-unit="px">
+                <span class="value">20px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Padding tlačítka:</label>
+                <input type="range" min="8" max="36" value="12" data-target=".content-btn" data-property="padding" data-unit="px">
+                <span class="value">12px</span>
+            </div>
+
+            <div class="control-group">
+                <label>Šířka karty:</label>
+                <input type="range" min="600" max="1200" value="900" data-target=".content-card" data-property="width" data-unit="px" data-scale-text="true">
+                <span class="value">900px</span>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h4>Editace obsahu</h4>
+            <div class="content-controls">
+                <button id="editContent" class="control-btn">Upravit obsah</button>
+                <button id="saveContent" class="control-btn" style="display: none;">Uložit obsah</button>
+                <button id="cancelEdit" class="control-btn" style="display: none;">Zrušit</button>
+            </div>
+            <div class="formatting-controls" style="display: none;">
+                <button onclick="document.execCommand('bold')">Tučně</button>
+                <button onclick="document.execCommand('italic')">Kurzíva</button>
+                <button onclick="changeFontSize('increase')">A+</button>
+                <button onclick="changeFontSize('decrease')">A-</button>
+            </div>
+        </div>
+
+        <div class="control-section">
+            <h4>Section Divider</h4>
+            <div class="control-group">
+                <label>Letter spacing (ONEEIGHTY):</label>
+                <input type="range" min="800" max="1400" value="1200" data-target=".main-text, .stroke-text" data-property="textLength" data-unit="">
+                <span class="value">1200</span>
+            </div>
+            <div class="control-group">
+                <label>Overlay text vertical position:</label>
+                <input type="range" min="-200" max="200" value="20" data-target=".overlay-text" data-property="y-offset" data-unit="px">
+                <span class="value">20px</span>
+            </div>
+        </div>
+
+        <div class="controls-buttons">
+            <button id="saveSpacing" class="control-btn">Uložit pozice</button>
+            <button id="resetSpacing" class="control-btn">Resetovat do výchozího stavu</button>
+        </div>
+    </div>
+    <nav class="navbar">
+        <div class="container">
+            <a href="/" class="logo">180°</a>
+            <div class="nav-links">
+                <a href="/o-nas">O nás</a>
+                <a href="/proc-zrovna-my">Proč zrovna my?</a>
+                <a href="/kontakt">Kontakt</a>
+                <a href="/konzultace" class="btn-primary">Domluvit bezplatnou konzultaci</a>
+                <button id="adminBtn" class="admin-btn">Admin Mode</button>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="container">
+                <h1>
+                    Otočte s námi<br>
+                    Váš brand o <span class="accent">180°</span>
+                </h1>
+                <p class="subtitle">Pomáháme firmám vyniknout na sociálních sítích.</p>
+                <a href="/kontakt" class="btn-secondary">Pojďme se potkat</a>
+            </div>
+        </section>
+
+        <section class="clients">
+            <div class="container">
+                <div class="section-title">
+                    <span class="line"></span>
+                    <h2>Přidejte se k firmám, kterým pomáháme růst</h2>
+                    <span class="line"></span>
+                </div>
+                <div class="logos-container">
+                    <div class="client-logos">
+                        <img src="images/dzzmY5Bg8sf0iQ08xX3M57kIrBU.avif" alt="Markéta Hildebrandt">
+                        <img src="images/qCIiklRIB6jmVsEXoBesm0Bjdo.avif" alt="Povidloň">
+                        <img src="images/[CITYPNG.COM]Lego White Logo Download PNG - 1000x1000.png" alt="LEGO">
+                        <img src="images/b2qiU8PhDUeqTKDHKk7mZgmXI.avif" alt="Alissa Beauté">
+                        <!-- Opakované sady log pro plynulou animaci -->
+                        <img src="images/dzzmY5Bg8sf0iQ08xX3M57kIrBU.avif" alt="Markéta Hildebrandt">
+                        <img src="images/qCIiklRIB6jmVsEXoBesm0Bjdo.avif" alt="Povidloň">
+                        <img src="images/[CITYPNG.COM]Lego White Logo Download PNG - 1000x1000.png" alt="LEGO">
+                        <img src="images/b2qiU8PhDUeqTKDHKk7mZgmXI.avif" alt="Alissa Beauté">
+                        <img src="images/dzzmY5Bg8sf0iQ08xX3M57kIrBU.avif" alt="Markéta Hildebrandt">
+                        <img src="images/qCIiklRIB6jmVsEXoBesm0Bjdo.avif" alt="Povidloň">
+                        <img src="images/[CITYPNG.COM]Lego White Logo Download PNG - 1000x1000.png" alt="LEGO">
+                        <img src="images/b2qiU8PhDUeqTKDHKk7mZgmXI.avif" alt="Alissa Beauté">
+                        <img src="images/dzzmY5Bg8sf0iQ08xX3M57kIrBU.avif" alt="Markéta Hildebrandt">
+                        <img src="images/qCIiklRIB6jmVsEXoBesm0Bjdo.avif" alt="Povidloň">
+                        <img src="images/[CITYPNG.COM]Lego White Logo Download PNG - 1000x1000.png" alt="LEGO">
+                        <img src="images/b2qiU8PhDUeqTKDHKk7mZgmXI.avif" alt="Alissa Beauté">
+                        <img src="images/dzzmY5Bg8sf0iQ08xX3M57kIrBU.avif" alt="Markéta Hildebrandt">
+                        <img src="images/qCIiklRIB6jmVsEXoBesm0Bjdo.avif" alt="Povidloň">
+                        <img src="images/[CITYPNG.COM]Lego White Logo Download PNG - 1000x1000.png" alt="LEGO">
+                        <img src="images/b2qiU8PhDUeqTKDHKk7mZgmXI.avif" alt="Alissa Beauté">
+                        <img src="images/dzzmY5Bg8sf0iQ08xX3M57kIrBU.avif" alt="Markéta Hildebrandt">
+                        <img src="images/qCIiklRIB6jmVsEXoBesm0Bjdo.avif" alt="Povidloň">
+                        <img src="images/[CITYPNG.COM]Lego White Logo Download PNG - 1000x1000.png" alt="LEGO">
+                        <img src="images/b2qiU8PhDUeqTKDHKk7mZgmXI.avif" alt="Alissa Beauté">
+                        <img src="images/dzzmY5Bg8sf0iQ08xX3M57kIrBU.avif" alt="Markéta Hildebrandt">
+                        <img src="images/qCIiklRIB6jmVsEXoBesm0Bjdo.avif" alt="Povidloň">
+                        <img src="images/[CITYPNG.COM]Lego White Logo Download PNG - 1000x1000.png" alt="LEGO">
+                        <img src="images/b2qiU8PhDUeqTKDHKk7mZgmXI.avif" alt="Alissa Beauté">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="section-divider">
+            <svg viewBox="0 0 1600 600" preserveAspectRatio="xMidYMid meet">
+                <g class="text-group">
+                    <!-- Animovaný stroke -->
+                    <text class="stroke-text" text-anchor="middle" x="800" y="400" textLength="1200">
+                        ONEEIGHTY
+                    </text>
+                    <!-- Hlavní text -->
+                    <text class="main-text" text-anchor="middle" x="800" y="400" textLength="1200">
+                        ONEEIGHTY
+                    </text>
+                </g>
+            </svg>
+            <div class="overlay-text">oneeighty</div>
+        </section>
+
+        <section class="content-marketing">
+            <div class="container">
+                <h2 class="section-heading">
+                    Proč je obsahový marketing <span class="accent">klíčový</span><br>
+                    pro budování silné značky?
+                </h2>
+
+                <div class="content-card">
+                    <div class="content-view">
+                        <p class="greeting">Ahoj Podnikatelé,</p>
+                        <p>budování značky, ke které se zákazníci vracejí, je těžké. <strong>Zatraceně těžké.</strong></p>
+                        <p>S příchodem AI se dostáváme do úplně nové éry, od které nikdo nevíme, co čekat.</p>
+                        <p>Jedno je ale jisté. Nástroje, postupy a vše co se dá automatizovat bude automatizováno. Internetové algoritmy se <strong>každým dnem mění.</strong></p>
+                        <p>Proto v následujících letech přežijí pouze značky, které se svými zákazníky budují vztahy, naplňují jejich potřeby a vytvářejí komunity.</p>
+                        <p>Jak se stát značkou, která svým zákazníkům dává to, co potřebují? Je to jednoduché.</p>
+                        <p>Musíme se svými zákazníky <strong>komunikovat a budovat s nimi vztahy,</strong> předávat hodnotu, zabavit je. Stejně jako to lidi běžně ve vztazích dělají.</p>
+                        <p class="question">A jak to dělat nejlépe?</p>
+                        <button class="content-btn">Obsahem.</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer class="footer">
+        <div class="container">
+        </div>
+    </footer>
+
+    <div id="adminModal" class="modal">
+        <div class="modal-content">
+            <h3>Admin Authentication</h3>
+            <input type="password" id="adminPassword" placeholder="Enter password">
+            <button id="submitPassword">Submit</button>
+        </div>
+    </div>
+
+    <svg width="0" height="0" style="position: absolute;">
+        <defs>
+            <filter id="stroke-filter">
+                <feMorphology operator="dilate" radius="2" in="SourceAlpha" result="thicken" />
+                <feGaussianBlur in="thicken" stdDeviation="1" result="blurred" />
+                <feFlood flood-color="#FF0000" result="glowColor" />
+                <feComposite in="glowColor" in2="blurred" operator="in" result="softGlow" />
+                <feMerge>
+                    <feMergeNode in="softGlow"/>
+                    <feMergeNode in="SourceGraphic"/>
+                </feMerge>
+            </filter>
+        </defs>
+    </svg>
+    <script src="admin.js"></script>
+</body>
+</html> 

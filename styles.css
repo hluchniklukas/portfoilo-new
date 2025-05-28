@@ -1,0 +1,844 @@
+/* Reset a základní styly */
+:root {
+    --section-spacing: 0px;
+    --section-divider-margin: -40px;
+    --clients-section-margin: 0px;
+    --content-marketing-margin: -100px;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #F0F0FF;
+    color: #000000;
+    line-height: 1.6;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigace */
+.navbar {
+    padding: 2rem 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #5000FF;
+    font-size: 2rem;
+    font-weight: bold;
+    text-decoration: none;
+    font-family: 'Montserrat', sans-serif;
+}
+
+.nav-links {
+    display: flex;
+    gap: 3rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #000000;
+    text-decoration: none;
+    transition: color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.1rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.nav-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #5000FF;
+    transform: translateX(-101%);
+    transition: transform 0.3s ease-out;
+}
+
+.nav-links a:hover::after {
+    transform: translateX(0);
+}
+
+.admin-btn {
+    background: none;
+    border: none;
+    color: #000000;
+    cursor: pointer;
+    padding: 5px 10px;
+    font-size: 1.1rem;
+    font-family: 'Montserrat', sans-serif;
+    position: relative;
+    overflow: hidden;
+    margin-left: 1rem;
+}
+
+.admin-btn::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background-color: #5000FF;
+    transform: translateX(-101%);
+    transition: transform 0.3s ease-out;
+}
+
+.admin-btn:hover::after {
+    transform: translateX(0);
+}
+
+/* Tlačítka */
+.btn-primary {
+    background-color: #FF0000;
+    color: white !important;
+    padding: 1rem 2rem;
+    border-radius: 9999px;
+    transition: background-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary:hover {
+    background-color: #E00000;
+}
+
+.btn-primary:active {
+    animation: buttonPop 0.3s ease;
+}
+
+.btn-secondary {
+    background-color: #5000FF;
+    color: white;
+    padding: 1.2rem 3.5rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.25rem;
+    transition: background-color 0.3s;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 700;
+    margin-top: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-secondary:hover {
+    background-color: #4000CC;
+}
+
+.btn-secondary:active {
+    animation: buttonPop 0.3s ease;
+}
+
+/* Hero sekce */
+.hero {
+    text-align: center;
+    padding: 8rem 0;
+}
+
+.hero h1 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 4.5rem;
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    line-height: 1.2;
+    animation: fadeIn 1s ease-out;
+}
+
+.hero .accent {
+    color: #FF0000;
+}
+
+.hero .subtitle {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.75rem;
+    color: #000000;
+    margin-bottom: 2rem;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+    animation: fadeIn 1s ease-out 0.3s backwards;
+}
+
+.hero .btn-secondary {
+    animation: fadeIn 1s ease-out 0.6s backwards;
+}
+
+/* Sekce s klienty */
+.clients {
+    padding: 10px 0;
+    text-align: center;
+    margin: var(--clients-section-margin) 0;
+}
+
+.section-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-bottom: 4rem;
+}
+
+.section-title .line {
+    height: 1px;
+    background-color: #000000;
+    width: 100px;
+    opacity: 0.2;
+    position: relative;
+    overflow: hidden;
+}
+
+.section-title .line::after {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, transparent, #000, transparent);
+    animation: shimmer 2s infinite;
+}
+
+@keyframes shimmer {
+    0% {
+        transform: translateX(-100%);
+    }
+    100% {
+        transform: translateX(100%);
+    }
+}
+
+.section-title h2 {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 1.5rem;
+    color: #000000;
+    white-space: nowrap;
+    font-weight: 500;
+}
+
+/* Animace log */
+@keyframes scroll {
+    0% {
+        transform: translateX(0);
+    }
+    100% {
+        transform: translateX(calc(-50% - 3rem));
+    }
+}
+
+.logos-container {
+    width: 100%;
+    overflow: hidden;
+    margin-top: 3rem;
+    padding: 20px 0;
+    position: relative;
+}
+
+.logos-container::before,
+.logos-container::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    width: 100px;
+    height: 100%;
+    z-index: 2;
+}
+
+.logos-container::before {
+    left: 0;
+    background: linear-gradient(to right, #F0F0FF 0%, transparent 100%);
+}
+
+.logos-container::after {
+    right: 0;
+    background: linear-gradient(to left, #F0F0FF 0%, transparent 100%);
+}
+
+.client-logos {
+    display: flex;
+    gap: 6rem;
+    animation: scroll 60s linear infinite;
+    white-space: nowrap;
+    width: fit-content;
+}
+
+.client-logos img {
+    height: 3.5rem;
+    object-fit: contain;
+    filter: brightness(0);
+    opacity: 0.6;
+    transition: opacity 0.3s;
+    transition: all 0.3s ease;
+}
+
+.client-logos img:hover {
+    opacity: 1;
+    transform: scale(1.1);
+    filter: brightness(0.8);
+}
+
+/* Section Divider */
+.section-divider {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: visible;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin: var(--section-divider-margin) 0;
+    z-index: 0;
+}
+
+.section-divider svg {
+    width: 100%;
+    height: 100%;
+    overflow: visible;
+    pointer-events: none;
+}
+
+/* Text group */
+.section-divider .text-group {
+    transition: transform 0.2s ease-out;
+    transform-origin: center center;
+    pointer-events: bounding-box;
+    cursor: pointer;
+}
+
+.section-divider:hover .text-group {
+    transform: scale(1.02);
+}
+
+/* Hlavní text */
+.section-divider .main-text {
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 450px;
+    font-weight: 900;
+    fill: #E6E6FF;
+    stroke: none;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    opacity: 0.9;
+}
+
+/* Animovaný stroke */
+.section-divider .stroke-text {
+    font-family: 'Alumni Sans', sans-serif;
+    font-size: 450px;
+    font-weight: 900;
+    fill: none;
+    stroke: #4444FF;
+    stroke-width: 1.5px;
+    text-transform: uppercase;
+    letter-spacing: -0.03em;
+    stroke-dasharray: 15 10;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    animation: strokeAnimation var(--stroke-animation-duration, 10s) linear infinite;
+    pointer-events: none;
+}
+
+@keyframes strokeAnimation {
+    to {
+        stroke-dashoffset: -50;
+    }
+}
+
+.overlay-text {
+    position: absolute;
+    font-size: 90px;
+    font-weight: 400;
+    color: #FF0000;
+    white-space: nowrap;
+    text-transform: lowercase;
+    font-family: 'Dynalight', cursive;
+    z-index: 2;
+    letter-spacing: -0.02em;
+    transition: all 0.2s ease-out;
+    pointer-events: none;
+    left: 50%;
+    transform-origin: center;
+    transform: translate(-50%, var(--y-offset, 20px));
+}
+
+.section-divider:hover .overlay-text {
+    transform: translate(-50%, var(--y-offset, 20px)) scale(1.1) rotate(-5deg);
+    color: #FF3333;
+}
+
+/* Content Marketing Section */
+.content-marketing {
+    padding: 40px 0;
+    margin: var(--content-marketing-margin) 0;
+    position: relative;
+    z-index: 1;
+}
+
+.section-heading {
+    text-align: center;
+    font-size: 48px;
+    font-weight: 700;
+    margin-bottom: 20px;
+    line-height: 1.2;
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease;
+}
+
+.section-heading.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.section-heading .accent {
+    color: #6E30FF;
+    font-style: italic;
+    display: inline-block;
+    transition: all 0.6s ease 0.3s;
+    opacity: 0;
+    transform: translateY(20px);
+    font-weight: 500;
+}
+
+.section-heading.visible .accent {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.content-card {
+    background-color: #5000FF;
+    color: white;
+    padding: 60px;
+    border-radius: 40px;
+    width: 900px;
+    margin: 0 auto;
+    box-sizing: border-box;
+    transition: all 0.5s ease;
+    opacity: 0;
+    transform-origin: top center;
+    transform: translateY(50px) scaleY(0.6);
+    will-change: transform, opacity;
+}
+
+.content-card.visible {
+    opacity: 1;
+    transform: translateY(0) scaleY(1);
+}
+
+.content-card:hover {
+    transform: translateY(-5px);
+}
+
+.content-card p {
+    font-size: 20px;
+    line-height: 1.6;
+    margin-bottom: 24px;
+}
+
+.content-card .greeting {
+    font-size: 32px;
+    margin-bottom: 32px;
+}
+
+.content-card .question {
+    font-size: 32px;
+    margin-top: 40px;
+    margin-bottom: 32px;
+}
+
+.content-card strong {
+    font-weight: 700;
+}
+
+.content-btn {
+    background-color: #FF0000;
+    color: white;
+    border: none;
+    padding: 12px 24px;
+    border-radius: 999px;
+    font-size: 20px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    background: linear-gradient(90deg, #FF0000, #FF3333, #FF0000);
+    background-size: 200% 200%;
+    animation: gradientShift 3s ease infinite;
+}
+
+.content-btn:hover {
+    background-color: #E00000;
+}
+
+/* Admin Panel Sections */
+.control-section {
+    margin-bottom: 30px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.control-section h4 {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 15px;
+    font-weight: 500;
+}
+
+/* Spacing Controls */
+.spacing-control {
+    margin-bottom: 15px;
+}
+
+.spacing-control label {
+    display: block;
+    font-size: 12px;
+    color: #666;
+    margin-bottom: 5px;
+}
+
+.spacing-control input[type="range"] {
+    width: 100%;
+    margin-bottom: 5px;
+}
+
+.spacing-control .value {
+    font-size: 12px;
+    color: #999;
+}
+
+/* Upravení scrollování pro delší obsah */
+#spacing-controls {
+    max-height: 80vh;
+    overflow-y: auto;
+}
+
+#spacing-controls::-webkit-scrollbar {
+    width: 8px;
+}
+
+#spacing-controls::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 4px;
+}
+
+#spacing-controls::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+#spacing-controls::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Content Editor Styles */
+.content-controls {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+.content-edit {
+    min-height: 500px;
+}
+
+/* TinyMCE customization */
+.tox-tinymce {
+    border-radius: 10px !important;
+    overflow: hidden;
+}
+
+/* Content Editing */
+.content-view.editing {
+    outline: 2px dashed rgba(255, 255, 255, 0.3);
+    padding: 10px;
+    cursor: text;
+    transition: all 0.3s ease;
+}
+
+.content-view.editing:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    box-shadow: 0 0 0 2px rgba(255,255,255,0.3);
+}
+
+.formatting-controls {
+    display: none;
+    gap: 8px;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+.formatting-controls button {
+    padding: 6px 12px;
+    border: none;
+    border-radius: 4px;
+    background: #f0f0f0;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    margin-right: 4px;
+}
+
+.formatting-controls button:hover {
+    background: #e0e0e0;
+    transform: translateY(-2px);
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.formatting-controls button:last-child {
+    margin-right: 0;
+}
+
+/* Editor buttons */
+#editContent {
+    background-color: #5000FF;
+    color: white;
+}
+
+#editContent:hover {
+    background-color: #4000CC;
+}
+
+#saveContent {
+    background-color: #00CC00;
+    color: white;
+}
+
+#saveContent:hover {
+    background-color: #00AA00;
+}
+
+#cancelEdit {
+    background-color: #FF4444;
+    color: white;
+}
+
+#cancelEdit:hover {
+    background-color: #CC3333;
+}
+
+/* Animace */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    from {
+        transform: scale(0.95);
+        opacity: 0;
+    }
+    to {
+        transform: scale(1);
+        opacity: 1;
+    }
+}
+
+@keyframes slideInFromRight {
+    from {
+        transform: translateX(30px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+@keyframes buttonPop {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+.content-view {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.4s ease 0.2s;
+}
+
+.content-card.visible .content-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Admin Panel */
+.admin-panel {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background: rgba(20, 20, 40, 0.95);
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+    z-index: 1000;
+    max-height: calc(100vh - 40px);
+    overflow-y: auto;
+    width: 320px;
+    color: white;
+    backdrop-filter: blur(10px);
+    transform: translateX(-120%);
+    transition: transform 0.3s ease-out;
+}
+
+.admin-panel.visible {
+    transform: translateX(0);
+}
+
+.admin-toggle {
+    position: fixed;
+    left: 20px;
+    bottom: 20px;
+    background: #5000FF;
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: 'Montserrat', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    z-index: 1001;
+    transition: all 0.2s ease;
+}
+
+.admin-toggle:hover {
+    background: #4000CC;
+    transform: translateY(-2px);
+}
+
+.admin-toggle:active {
+    transform: translateY(0);
+}
+
+.admin-panel h4 {
+    font-size: 16px;
+    color: white;
+    margin-bottom: 20px;
+    font-weight: 600;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.admin-panel h4::before {
+    content: '⚙️';
+    font-size: 20px;
+}
+
+.admin-panel .control-section {
+    margin-bottom: 25px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.admin-panel .spacing-control {
+    margin-bottom: 20px;
+}
+
+.admin-panel .spacing-control:last-child {
+    margin-bottom: 0;
+}
+
+.admin-panel .spacing-control label {
+    display: block;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 8px;
+}
+
+.admin-panel .spacing-control input[type="range"] {
+    width: 100%;
+    margin-bottom: 8px;
+    cursor: pointer;
+    -webkit-appearance: none;
+    background: rgba(255, 255, 255, 0.1);
+    height: 6px;
+    border-radius: 3px;
+}
+
+.admin-panel .spacing-control input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 16px;
+    height: 16px;
+    background: #5000FF;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: all 0.2s ease;
+}
+
+.admin-panel .spacing-control input[type="range"]::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+    background: #6E30FF;
+}
+
+.admin-panel .spacing-control .value {
+    font-size: 12px;
+    color: rgba(255, 255, 255, 0.6);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.admin-panel::-webkit-scrollbar {
+    width: 6px;
+}
+
+.admin-panel::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+}
+
+.admin-panel::-webkit-scrollbar-thumb {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 3px;
+}
+
+.admin-panel::-webkit-scrollbar-thumb:hover {
+    background: rgba(255, 255, 255, 0.3);
+} 
