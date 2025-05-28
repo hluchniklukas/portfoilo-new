@@ -1,0 +1,243 @@
+/* Reset a základní styly */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+    background-color: #F0F0FF;
+    color: #333;
+    line-height: 1.6;
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* Navigace */
+.navbar {
+    padding: 1.5rem 0;
+}
+
+.navbar .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logo {
+    color: #5000FF;
+    font-size: 1.5rem;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.nav-links {
+    display: flex;
+    gap: 2rem;
+    align-items: center;
+}
+
+.nav-links a {
+    color: #333;
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: #5000FF;
+}
+
+/* Tlačítka */
+.btn-primary {
+    background-color: #FF0000;
+    color: white !important;
+    padding: 0.75rem 1.5rem;
+    border-radius: 9999px;
+    transition: background-color 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #E00000;
+}
+
+.btn-secondary {
+    background-color: #5000FF;
+    color: white;
+    padding: 1rem 3rem;
+    border-radius: 9999px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 1.25rem;
+    transition: background-color 0.3s;
+}
+
+.btn-secondary:hover {
+    background-color: #4000CC;
+}
+
+/* Hero sekce */
+.hero {
+    text-align: center;
+    padding: 5rem 0;
+}
+
+.hero h1 {
+    font-size: 3.75rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+}
+
+.hero .accent {
+    color: #FF0000;
+}
+
+.hero .subtitle {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 2rem;
+}
+
+/* Sekce s klienty */
+.clients {
+    padding: 5rem 0;
+    text-align: center;
+}
+
+.clients h2 {
+    font-size: 1.5rem;
+    color: #666;
+    margin-bottom: 4rem;
+}
+
+.client-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 4rem;
+}
+
+.client-logos img {
+    height: 3rem;
+    object-fit: contain;
+    filter: grayscale(100%);
+    transition: filter 0.3s;
+}
+
+.client-logos img:hover {
+    filter: grayscale(0%);
+}
+
+/* Responzivní design */
+@media (max-width: 768px) {
+    .nav-links {
+        display: none;
+    }
+    
+    .hero h1 {
+        font-size: 2.5rem;
+    }
+    
+    .hero .subtitle {
+        font-size: 1.25rem;
+    }
+    
+    .client-logos {
+        flex-wrap: wrap;
+        gap: 2rem;
+    }
+}
+
+/* Responsive Design */
+@media screen and (max-width: 768px) {
+    body {
+        padding: 10px;
+    }
+
+    .header {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        padding: 20px 10px;
+    }
+
+    .header nav {
+        margin-top: 20px;
+    }
+
+    .header nav a {
+        margin: 5px;
+        display: inline-block;
+    }
+
+    .section {
+        margin: 20px 0;
+        padding: 20px 10px;
+    }
+
+    .section h2 {
+        font-size: 24px;
+    }
+
+    .section p {
+        font-size: 16px;
+    }
+
+    .grid {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .client-logos {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .client-logos img {
+        margin: 10px 0;
+        max-width: 200px;
+    }
+
+    .contact-form {
+        padding: 20px;
+    }
+
+    .contact-form input,
+    .contact-form textarea {
+        width: 100%;
+    }
+
+    .footer {
+        flex-direction: column;
+        text-align: center;
+        padding: 20px 10px;
+    }
+
+    .footer .social-links {
+        margin-top: 20px;
+    }
+}
+
+/* Menší mobilní zařízení */
+@media screen and (max-width: 480px) {
+    .header h1 {
+        font-size: 24px;
+    }
+
+    .section h2 {
+        font-size: 20px;
+    }
+
+    .section p {
+        font-size: 14px;
+    }
+
+    .client-logos img {
+        max-width: 150px;
+    }
+} 
